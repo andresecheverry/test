@@ -98,9 +98,6 @@ Addition::Addition(Expression* a, Expression* b)
 {
 	Expression::setLeftSide(a);
 	Expression::setRightSide(b);
-
-	Expression::setValue(a->getValue()+b->getValue());
-	cout<< "Object created: " << Expression::toString();
 };
 
 string Addition::toString()

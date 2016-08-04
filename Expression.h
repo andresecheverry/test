@@ -37,7 +37,8 @@ class Expression
 		// Returns the individual multiplicative factors of the expression
 		// - only those of a positive power.
 		// (Thus, belonging in the numerator if fractional.)
-		virtual list<Expression*> getNumeratorFactors() ;
+		virtual list<Expression*> getNumeratorFactors();
+
 
 		virtual list<Expression*> getDenominatorFactors();
 
