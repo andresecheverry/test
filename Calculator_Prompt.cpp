@@ -27,6 +27,7 @@ string getInput(bool begining)
 {
 	string input;
 	bool emptyInput = false;
+	begining =true;
 
 	do
 	{
@@ -34,7 +35,7 @@ string getInput(bool begining)
 		if (begining)
 		{
 			cout << "Please enter new Expression, or enter \"h\" for Help," << endl;
-			cout << "\"pe\" to review Previous Expressions, \"quit\" to quit."<< endl<<endl;
+			cout << "\"pe\" to review Previous Expressions and float values, \"quit\" to quit."<< endl<<endl;
 		}
 		cout << "> ";
 
@@ -64,10 +65,10 @@ string getPreviousExpression(vector<pair<string,float> > previousExpressions, of
 	{
 		if (count==0)
 		{
-			cout << "id \t Expression \t \t Floating Point Value" << endl;
+			cout << "id\tExpression\t\t\t\tFloating Point Value" << endl;
 		}
 		count++;
-		cout << count << ": \t" << ((*iter).first) << "\t\t = \t " << ((*iter).second) << endl;
+		cout << count << ":\t" << ((*iter).first) << "\t\t = \t\t" << ((*iter).second) << endl;
 	}
 
 	if (count == 0) cout << "There are no previous expressions to display"<< endl;
@@ -147,8 +148,11 @@ int main()
 			if(input == "pe")
 			{
 				previousExpression = getPreviousExpression(previousExpressions, logFile);
-				if (previousExpression!="()") ans = previousExpression;
-				cout << "The token \"ans\" has been set to: " << previousExpression << endl;
+				if (previousExpression!="()")
+				{
+					ans = previousExpression;
+					cout << "The token \"ans\" has been set to: " << previousExpression << endl;
+				}
 			}
 			else
 			{ // this is a new expression

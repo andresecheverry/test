@@ -76,11 +76,14 @@ Expression* Integer::simplify()
 		}
 		if(root.first !=1 && root.second==1) //it simplifies to an integer
 		{
-			cout << "creating new integer" << endl;
+			cout << "updating integer" << endl;
 			// create a new integer with the value outside the root
 
+			int currentSign = 1;
+			if(Expression::getValue() < 0) currentSign = -1;
+
 			// change the value of the current integer to the remainder inside the root;
-			Expression::setValue(pow(outsideTheRoot,Expression::getExponentNumerator()));
+			Expression::setValue(pow(outsideTheRoot*currentSign,Expression::getExponentNumerator()));
 
 			ostringstream read;
 			read << (Expression::getValue());
