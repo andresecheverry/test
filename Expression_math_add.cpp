@@ -26,11 +26,14 @@ Expression* sum_two_of_the_same(Expression* a, Expression* b)
 {
 	Expression* sum;
 
-	Integer* two = new Integer(2);
+	int quantity = a->getInternalSign()*a->mySign()+a->getInternalSign()*a->mySign();
 
-	b->setSign(1);
+	Integer* qty = new Integer(quantity);
 
-	sum = new Multiplication(two,b);
+	if (quantity<0) b->setSign(-1);
+	else b->setSign(1);
+
+	sum = new Multiplication(qty,b);
 
 	return sum;
 };

@@ -228,8 +228,20 @@ Expression* Multiplication::simplify()
 
 string Multiplication::toString()
 {
-	string output="to do here";
-	return output;
+	string tempString = "(";
+	tempString.append((Expression::getLeftSide())->toString());
+	int rightSideInternalSign=1;
+
+	if(dynamic_cast<SimpleExpression*>(Expression::getRightSide())!=NULL)
+	{
+		if ((Expression::getRightSide())->getValue()<0) rightSideInternalSign=-1;
+	}
+
+	tempString.append("*");
+	tempString.append((Expression::getRightSide())->toString());
+	tempString.append(")");
+	Expression::setString(tempString);
+	return Expression::toString();
 };
 
 Expression* Expression::simplify()
