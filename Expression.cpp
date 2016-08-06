@@ -32,6 +32,11 @@ list<Expression*> Expression::getNumeratorFactors()
 	return numeratorFactors;
 };
 
+list<Expression*> Expression::getFactors()
+{
+	return numeratorFactors;
+};
+
 list<Expression*> Expression:: getAdditiveTerms()
 {
 	return additiveTerms;
@@ -59,6 +64,14 @@ string Expression::toString()
 			tempString.insert(0,"-");
 		}
 	}
+	if (!(dynamic_cast<Multiplication*>(this) !=NULL) && (this->getExponentNumerator() <0))
+	{// this is NOT a multiplication expression
+		// but it has a negative exponent, therefore
+		// build the fraction for display
+		tempString.insert(0,"(1/");
+		tempString.append(")");
+	}
+
 	return tempString;
 };
 
@@ -74,7 +87,7 @@ string Expression::getExponentString()
 
 			exponentString.append("(");
 
-			read << this->exponentNumerator;
+			read << abs(this->exponentNumerator);
 			exponentString.append(read.str());
 			exponentString.append("/");
 
@@ -86,7 +99,7 @@ string Expression::getExponentString()
 		} else
 		{
 			ostringstream read;
-			read << this->exponentNumerator;
+			read << abs(this->exponentNumerator);
 			exponentString.append(read.str());
 		}
 	}

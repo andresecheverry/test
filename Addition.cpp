@@ -5,7 +5,6 @@
  *      Author: andres.echeverry
  */
 
-
 #include"Expression.h"
 #include"Expression_math.h"
 #include <sstream>
@@ -32,7 +31,12 @@ string Addition::toString()
 		if ((Expression::getRightSide())->getValue()<0) rightSideInternalSign=-1;
 	}
 
-	if((Expression::getRightSide())->mySign()*rightSideInternalSign==1) tempString.append("+");
+	if((Expression::getRightSide())->mySign()*rightSideInternalSign==1)
+	{
+		tempString.append("+");
+		(Expression::getRightSide())->setSign(1);
+		Expression::getRightSide()->setValue((double)abs(Expression::getRightSide()->getValue()));
+	}
 	tempString.append((Expression::getRightSide())->toString());
 	tempString.append(")");
 	Expression::setString(tempString);
@@ -42,7 +46,6 @@ string Addition::toString()
 list<Expression*> Addition::getAdditiveTerms()
 {
 	list<Expression*> additiveTerms;
-
 	if(Expression::getExponentNumerator()!= Expression::getExponentDenominator())
 	{
 		return (Expression::getAdditiveTerms());
@@ -102,9 +105,9 @@ Expression* Addition::simplify()
 
 		if((sum->getExponentDenominator()%2==0) && (newValue<0))
 		{
-			cerr<< "Error: cannot take the root" << endl;
+			cerr<< "Error: cannot take the even root of a negative value" << endl;
 			sum=NULL;
-			throw runtime_error("Error: cannot take the root");
+			throw runtime_error("Error: cannot take the even root of a negative value");
 		} else
 		{
 			sum->setValue(pow((newValue),(double)sum->getExponentNumerator()/(double)sum->getExponentDenominator()));

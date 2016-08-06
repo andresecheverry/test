@@ -25,6 +25,10 @@ class Integer final: public SimpleExpression
 	public:
 		Integer(int);
 		Expression* simplify();
+		int getBaseInt() {return myBaseInt;};
+		void setBaseInt(int a) { myBaseInt = a;};
+	private:
+		int myBaseInt;
 };
 
 class pi final: public SimpleExpression

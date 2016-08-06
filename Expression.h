@@ -39,6 +39,7 @@ class Expression
 		// (Thus, belonging in the numerator if fractional.)
 		virtual list<Expression*> getNumeratorFactors();
 
+		virtual list<Expression*> getFactors();
 
 		virtual list<Expression*> getDenominatorFactors();
 
@@ -80,6 +81,7 @@ class Expression
 		void setInternalSign(int a) { internalSign = a;};
 
 
+
 	private:
 		int internalSign=1;
 		Expression* leftSide=NULL;
@@ -108,6 +110,8 @@ class Multiplication: public Expression
 	public:
 		Multiplication(Expression* a, Expression* b);
 		list<Expression*> getNumeratorFactors();
+		list<Expression*> getDenominatorFactors();
+		list<Expression*> getFactors();
 		Expression* simplify();
 		string toString();
 };

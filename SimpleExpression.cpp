@@ -17,6 +17,7 @@
 Integer::Integer(int a)
 {
 	Expression::setValue((a));
+	myBaseInt = a;
 
 	ostringstream read;
 	read << (Expression::getValue());

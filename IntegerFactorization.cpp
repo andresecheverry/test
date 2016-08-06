@@ -23,7 +23,7 @@ vector<int> getPrimesFor(int myInt)
 	if (myInt>=2) myPrimes.push_back(2);
 	if (myInt>=3) myPrimes.push_back(3);
 
-	for (int i=1;(6*i-1)<=(myInt/2); i++)
+	for (int i=1;(6*i-1)<=(myInt); i++)
 	{
 		for (int k = -1; k<=1; k=k+2)
 		{
@@ -70,6 +70,7 @@ IntegerFactorization::IntegerFactorization(int a)
 		{
 			pair<int, int> newPair = {candidateFactor,count};
 			allFactors.push_back(newPair);
+			cout<< "Integer Factorization - Factor pair added for " << a << ": " << newPair.first << "," << newPair.second<< endl;
 		}
 
 	}

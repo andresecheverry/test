@@ -8,7 +8,9 @@
 #include"Expression.h"
 #include"SimpleExpression.h"
 #include "Expression_math.h"
-#include<math.h>
+#include<cmath>
+
+using namespace std;
 
 Integer* sum_int_int(Integer*, Integer*);
 Expression* sum_two_of_the_same(Expression*, Expression*);
@@ -149,10 +151,12 @@ Expression* Expression_math::add(Expression* a, Expression* b)
 	bool foundType=false;
 	bool sameExponent;
 
-	double aExponent = (double)((a->getExponentNumerator())/(a->getExponentDenominator()));
-	double bExponent = (double)((b->getExponentNumerator())/(b->getExponentDenominator()));
+	double aExponent = ((double)(a->getExponentNumerator())/(double)(a->getExponentDenominator()));
+	double bExponent = ((double)(b->getExponentNumerator())/(double)(b->getExponentDenominator()));
 
-	sameExponent = (aExponent == bExponent);
+	double diff = aExponent-bExponent;
+
+	sameExponent = ((std::abs(diff)) < 0.0001);
 
 	if(dynamic_cast<Integer*>(a) != NULL && a->getExponentDenominator()==1)
 	{ // a is an integer
