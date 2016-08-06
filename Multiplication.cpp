@@ -37,10 +37,7 @@ string Multiplication::toString()
 		Expression::getRightSide()->setValue((double)abs(Expression::getRightSide()->getValue()));
 	}
 
-	if((Expression::getRightSide())->getExponentNumerator() > 0)
-	{
-		tempString.append("*");
-	} else tempString.append("/");
+	tempString.append("*");
 
 	tempString.append((Expression::getRightSide())->toString());
 	tempString.append(")");

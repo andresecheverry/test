@@ -141,6 +141,19 @@ Addition* sum_two_different(Expression* a, Expression* b)
 		}
 	}
 
+	// now consolidate fractions
+
+	list<Expression*>::iterator iter_leftFactors;
+	list<Expression*>::iterator iter_rightFactors;
+
+	list<Expression*> factorsLeftSide = (last->getLeftSide())->getFactors();
+	list<Expression*> factorsRightSide = (last->getRightSide())->getFactors();
+
+	iter_leftFactors = factorsLeftSide.begin();
+	iter_rightFactors = factorsRightSide.begin();
+
+
+
 	Addition* newAddition = dynamic_cast<Addition*>(last);
 	return newAddition;
 };

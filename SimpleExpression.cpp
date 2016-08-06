@@ -102,14 +102,30 @@ Expression* Integer::simplify()
 		return parent;
 	} else
 	{ // the exponent is an integer, perform the exponentiation
-		double newValue=pow(Expression::getValue(), Expression::getExponentNumerator());
-		Expression::setValue((newValue));
-		Expression::setExponent(1,1);
+		// if exponent is positive
+		if (Expression::getExponentNumerator()>=0)
+		{
+			double newValue=pow(Expression::getValue(), Expression::getExponentNumerator());
+			Expression::setValue((newValue));
+			this->setBaseInt((newValue));
+			Expression::setExponent(1,1);
 
-		// update the string
-		ostringstream read;
-		read << (Expression::getValue());
-		Expression::setString(string(read.str()));
+			// update the string
+			ostringstream read;
+			read << (Expression::getValue());
+			Expression::setString(string(read.str()));
+		} else
+		{
+			// the exponent is negative, this integer is a faction
+			double newValue=pow(Expression::getValue(), Expression::getExponentNumerator());
+			Expression::setValue(1/(newValue));
+			Expression::setExponent(-1,1);
+
+			// update the string
+			ostringstream read;
+			read << (this->getBaseInt());
+			Expression::setString(string(read.str()));
+		}
 
 		Expression* parent = this;
 		return parent;

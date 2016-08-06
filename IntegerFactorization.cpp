@@ -53,7 +53,8 @@ IntegerFactorization::IntegerFactorization(int a)
 {
 	myInt = a;
 
-	vector<int> factorCandidates = getPrimesFor(myInt);
+	vector<int> factorCandidates = getPrimesFor(abs(myInt));
+	if (myInt<0) factorCandidates.push_back(-1);
 	vector<int>::iterator iter;
 	int remainingFactor = myInt;
 

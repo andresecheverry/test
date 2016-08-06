@@ -33,19 +33,19 @@ pair<int,int> addFactions(pair<int,int> a,pair<int,int> b)
 	vector<pair<int,int>>::iterator iterNumeratorFactors;
 	vector<pair<int,int>>::iterator iterDenominatorFactors;
 
-	int numerator=1;
+	int numerator=0;
 	int denominator=1;
 
 	for(iterNumeratorFactors = resultNumeratorFactors.begin(); iterNumeratorFactors!=resultNumeratorFactors.end(); iterNumeratorFactors++)
 	{
 		cout<< "Going through Add Fractions: Numerator Factor: " << (*iterNumeratorFactors).first << "^" << (*iterNumeratorFactors).second<< endl;
 
-		bool found = false;
+		numerator = 1;
 
 		for(iterDenominatorFactors = resultDenominatorFactors.begin(); iterDenominatorFactors!=resultDenominatorFactors.end(); iterDenominatorFactors++)
 		{
 			cout<< "Going through Add Fractions: Denominator Factor: " << (*iterDenominatorFactors).first << "^" << (*iterDenominatorFactors).second<< endl;
-
+			denominator =1;
 			if((*iterNumeratorFactors).first == (*iterDenominatorFactors).first)
 			{// shared factor is found
 				cout << "shared factor found: " << (*iterNumeratorFactors).first << endl;
@@ -95,10 +95,13 @@ Expression* multiply_int_int(Integer* a, Integer* b)
 	bool sameExponent;
 	Expression* product;
 
+	cout<< "comparing exponents: "<< a->getExponentNumerator() << ","<< a->getExponentDenominator() << endl;
+	cout<< "comparing exponents: "<< b->getExponentNumerator() << ","<< b->getExponentDenominator() << endl;
+
 	double aExponent = ((double)(a->getExponentNumerator())/(double)(a->getExponentDenominator()));
 	double bExponent = ((double)(b->getExponentNumerator())/(double)(b->getExponentDenominator()));
 
-	sameExponent = fabs(aExponent - bExponent)<0.000001;
+	sameExponent = (fabs(aExponent - bExponent)<0.000001);
 
 	if (sameExponent)
 	{
@@ -159,8 +162,8 @@ Expression* multiply_two_of_the_same(Expression* a, Expression* b)
 
 Expression* multiply_two_different(Expression* a, Expression* b)
 {
-
-	return a;
+	Expression* product = new Multiplication(a,b);
+	return product;
 }
 
 Expression* Expression_math::multiply(Expression* a, Expression* b)

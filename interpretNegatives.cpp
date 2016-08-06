@@ -31,10 +31,12 @@ int interpretNegatives(list<Token>* tokenList)
 
 		// Now deal with first digit being a negative sign
 
-		if(((((count == 0 ||
+		if(((((((count == 0 ||
 				priorTokenString == "(") ||
 				priorTokenString == "*") ||
 				priorTokenString == "/") ||
+				priorTokenString == "^") ||
+				priorTokenString == "rt") ||
 				priorTokenString == "+")     && (tokenString=="-"))
 		{
 			// if the next token is a number

@@ -115,11 +115,12 @@ Expression* process_expression(list<Token> tokenList, ofstream &logFile)
 						}
 						if(iter->isDivide())
 						{
-/*							thisExpression = new Division(twoExpressionsBack , lastExpression);
+							lastExpression->setExponent((-1*lastExpression->getExponentNumerator()),lastExpression->getExponentDenominator());
+							thisExpression = new Multiplication(twoExpressionsBack , lastExpression);
 							lastExpression=threeExpressionsBack;
 							twoExpressionsBack=fourExpressionsBack;
 							threeExpressionsBack = fiveExpressionsBack;
-*/							tokenFound++;
+							tokenFound++;
 						}
 						if(iter->isRt())
 						{
@@ -133,7 +134,7 @@ Expression* process_expression(list<Token> tokenList, ofstream &logFile)
 						if(iter->isLog())
 						{
 	//						thisExpression = new Logarithm(twoExpressionsBack,lastExpression);
-							tokenFound++;
+//							tokenFound++;
 						}
 						if(iter->isExponentiate())
 						{

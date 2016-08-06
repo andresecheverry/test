@@ -68,8 +68,8 @@ string Expression::toString()
 	{// this is NOT a multiplication expression
 		// but it has a negative exponent, therefore
 		// build the fraction for display
-		tempString.insert(0,"(1/");
-		tempString.append(")");
+//		tempString.insert(0,"(1/");
+//		tempString.append(")");
 	}
 
 	return tempString;
@@ -87,7 +87,7 @@ string Expression::getExponentString()
 
 			exponentString.append("(");
 
-			read << abs(this->exponentNumerator);
+			read << (this->exponentNumerator); // removed abs from here
 			exponentString.append(read.str());
 			exponentString.append("/");
 
@@ -99,7 +99,7 @@ string Expression::getExponentString()
 		} else
 		{
 			ostringstream read;
-			read << abs(this->exponentNumerator);
+			read << (this->exponentNumerator); // removed abs from here
 			exponentString.append(read.str());
 		}
 	}
